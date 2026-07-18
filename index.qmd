@@ -1,6 +1,8 @@
 ---
 title: "Workshop Exercise: Emissions Data - Table, Map, and Chart"
-format: html
+format: 
+  html:
+    code-fold: false
 ---
 
 # Introduction
