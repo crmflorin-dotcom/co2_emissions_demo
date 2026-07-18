@@ -1,36 +1,11 @@
 ---
 title: "Workshop Exercise: Emissions Data - Table, Map, and Chart"
+theme: cosmo
 format: 
   html:
-    code-fold: false
+    code-fold: true
 ---
 
-# Introduction
-
-In this exercise, you will work with a CO2 emissions dataset downloaded from Gapminder and produce a report with three tabs: a data table, a line chart, and a choropleth map. 
-
-The goal is to roughly replicate the [Our World in Data visualization page on consumption-based CO<sub>2</sub> emissions](https://ourworldindata.org/grapher/consumption-co2-emissions?tab=table&time=2000..2022).
-
-Be sure to view that page to get an idea of the final product.
-
-# Setup
-
-- You should have forked and cloned this repository to your local machine.
-
-- Now, create and select a virtual environment in VSCode.
-
-- Install the following packages: 
-  - pandas
-  - plotly
-  - itables
-  - ipykernel
-  - jupyter
-
-- Download the data from [Gapminder](https://www.gapminder.org/data/) by selecting: *Environment > Emissions > CO2 Total emissions*, then downloading the CSV file into a `data` folder in your repository. NOTE: IT is important that you select `CO2 Total emissions` and not `CO2 emissions per capita` or any of the other CO2 related datasets.
-
-# Data Import
-
-Run the following code to import the necessary libraries:
 
 ```{python}
 import pandas as pd
@@ -38,20 +13,13 @@ import plotly.express as px
 from itables import show
 ```
 
-Load in your dataset from gapminder below. View it in your data viewer to get an idea of the structure.
 
 ```{python}
 # Load the data
 emissions = pd.read_csv("data/co2_cons.csv")
 ```
 
-# Table Section
 
-Our goal is to create a table showing emissions for a few selected years and calculate absolute and relative changes.
-
-1. Subset the data to include `name`, `2000`, and `2022` columns only. The `name` column contains the country names.
-2. Calculate an "Absolute Change" column as the difference between 2022 and 2000.
-3. Calculate a "Relative Change" column as the absolute change divided by the 2000 emissions, then multiplied by 100.
 
 ```{python}
 # Subset the data to include `name`, `2000`, and `2022` columns only.
@@ -67,20 +35,12 @@ table_df["Relative Change"] = table_df["Absolute Change"] / table_df["2000"] * 1
 table_df["Relative Change"] = table_df["Relative Change"].round(0).astype(str) + "%"
 ```
 
-Now we can display this as an interactive table with itables:
 
 ```{python}
 show(table_df)
 ```
 
-# Chart Section
 
-Our goal is to create a line chart from 1990 to 2022 for a few selected countries.
-
-1. Melt the original `emissions` dataset so that years become rows. Keep both `geo` and `name` as identifier columns.
-2. Filter from 1990 to 2022 only.
-3. Choose 5 countries of your choice.
-4. Create a line chart showing emissions over time for the selected countries with Plotly Express.
 
 ```{python}
 # Melt the original `emissions` dataset. Your id_vars should be
@@ -117,17 +77,7 @@ fig_chart.show()
 ```
 
 
-# Mapping Section
 
-This part is done for you.
-
-**Goal:** Create a choropleth map showing global emissions from 1990 to 2022.  
-
-This will be animated by year.
-
-1. Use the 3-letter country codes already provided in the `geo` column.
-2. Convert those codes to uppercase.
-3. Create a map with `px.choropleth` and use `animation_frame` to show changes over time.
 
 ```{python}
 # Convert the existing ISO3 codes to uppercase
@@ -148,7 +98,7 @@ fig_map.show()
 
 # Final Tabset
 
-Below, we place our results into a tabbed interface.
+The result for all calculations included into a single tabbed page
 
 ::: {.panel-tabset}
 
@@ -172,6 +122,3 @@ fig_map.show()
 
 :::
 
-# Deploying to GitHub Pages
-
-As a final step, you should follow the steps outlined in the prework to deplioy your report to GitHub Pages. You will be asked to share a link to your report in the course portal
