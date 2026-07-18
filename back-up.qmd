@@ -99,7 +99,7 @@ emissions_long_1990_2022 = emissions_long.query("1990 <= year <= 2022")
 
 # Query for 5 countries using the `name` column (adjust these to any countries you like)
 emissions_long_subset = emissions_long_1990_2022.query(
-    "name in ['Australia', 'UAE', 'India', 'Austria', 'Brazil']"
+    "name in ['USA', 'China', 'India', 'Germany', 'Brazil']"
 )
 
 # Create line chart. Year should be on the x-axis, emissions on the y-axis, and color should be by name.
