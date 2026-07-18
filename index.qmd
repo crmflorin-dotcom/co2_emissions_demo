@@ -40,7 +40,7 @@ Load in your dataset from gapminder below. View it in your data viewer to get an
 
 ```{python}
 # Load the data
-emissions = pd.read_csv("data/co2_cons (5).csv")
+emissions = pd.read_csv("data/co2_cons.csv")
 ```
 
 # Table Section
